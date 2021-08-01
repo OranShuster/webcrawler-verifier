@@ -26,6 +26,6 @@ public class GoogleBotDataTest {
 
     @Test
     public void testGetHostnames() throws Exception {
-        assertEquals(GoogleBotData.getInstance().getHostnames(), ImmutableList.of("googlebot.com"));
+        assertEquals(GoogleBotData.getInstance().getHostnames(), ImmutableList.of("googlebot.com","google.com"));
     }
 }

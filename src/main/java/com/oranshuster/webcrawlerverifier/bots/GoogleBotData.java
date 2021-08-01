@@ -21,7 +21,7 @@ public class GoogleBotData implements CrawlerData {
         }
     };
 
-    private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("googlebot.com");
+    private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("googlebot.com","google.com");
 
 
     private static final GoogleBotData INSTANCE = new GoogleBotData();
