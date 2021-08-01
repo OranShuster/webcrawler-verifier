@@ -1,6 +1,5 @@
 package com.oranshuster.webcrawlerverifier.dns;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Implementation that uses the dnsjava library.
@@ -56,10 +56,7 @@ public class DnsjavaReverseDnsVerifier extends BaseReverseDnsVerifier {
         }
 
         Optional<InetAddress> ipByHost = getIpByHost(actualHostname);
-        if (!ipByHost.isPresent()) {
-            return false;
-        }
-        return ipByHost.get().getHostAddress().equals(ip);
+        return ipByHost.map(inetAddress -> inetAddress.getHostAddress().equals(ip)).orElse(false);
     }
 
 
@@ -76,22 +73,23 @@ public class DnsjavaReverseDnsVerifier extends BaseReverseDnsVerifier {
 
         Record[] records;
         Lookup lookup;
+
         if (dnsServers!=null) {
             final Resolver res = new ExtendedResolver(dnsServers);
             lookup = new Lookup(name, Type.PTR);
             lookup.setResolver(res);
-            records = lookup.run();
         } else {
             lookup = new Lookup(name, Type.PTR);
-            records = lookup.run();
         }
+
+        records = lookup.run();
 
         int result = lookup.getResult();
         if (result==Lookup.TRY_AGAIN) {
             throw new IOException("Network error when trying to look up "+ Arrays.toString(addr) +", try again.");
         }
         if (result != Lookup.SUCCESSFUL || records == null) {
-            return Optional.absent();
+            return Optional.empty();
         }
         return Optional.of(((PTRRecord) records[0]).getTarget().toString());
     }
@@ -106,7 +104,7 @@ public class DnsjavaReverseDnsVerifier extends BaseReverseDnsVerifier {
             InetAddress addr = Address.getByName(hostName);
             return Optional.of(addr);
         } catch (UnknownHostException e) {
-            return Optional.absent();
+            return Optional.empty();
         }
     }
 

@@ -1,12 +1,12 @@
 package com.oranshuster.webcrawlerverifier;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.oranshuster.webcrawlerverifier.bots.BotCheckerResult;
 import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -29,7 +29,7 @@ public class DefaultKnownCrawlerDetector implements KnownCrawlerDetector {
                 return Optional.of(new KnownCrawlerResult(verifier.getIdentifier(), convert(check)));
             }
         }
-        return Optional.absent();
+        return Optional.empty();
     }
 
     private KnownCrawlerResultStatus convert(BotCheckerResult check) {

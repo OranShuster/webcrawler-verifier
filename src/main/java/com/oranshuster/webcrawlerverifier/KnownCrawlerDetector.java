@@ -1,8 +1,9 @@
 package com.oranshuster.webcrawlerverifier;
 
-import com.google.common.base.Optional;
 import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifier;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 /**
  *
