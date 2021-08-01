@@ -34,6 +34,7 @@ public class DnsjavaReverseDnsVerifier extends BaseReverseDnsVerifier {
 
     /**
      * TODO verify the dns servers are used in both requests, see below.
+     * @param dnsServers list of DNS servers
      */
     public DnsjavaReverseDnsVerifier(@NotNull List<String> dnsServers) {
         this.dnsServers = ImmutableList.copyOf(dnsServers).toArray(new String[dnsServers.size()]);

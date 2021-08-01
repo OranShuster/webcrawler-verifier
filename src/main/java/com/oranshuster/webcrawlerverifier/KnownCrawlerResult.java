@@ -13,6 +13,10 @@ public class KnownCrawlerResult {
     @NotNull
     private final KnownCrawlerResultStatus status;
 
+    /**
+     * @param identifier Bot identifier
+     * @param status Verify status (result)
+     */
     public KnownCrawlerResult(@NotNull String identifier, @NotNull KnownCrawlerResultStatus status) {
         this.identifier = identifier;
         this.status = status;
@@ -20,6 +24,7 @@ public class KnownCrawlerResult {
 
     /**
      * @see CrawlerData#getIdentifier()
+     * @return result identifier
      */
     @NotNull
     public String getIdentifier() {
@@ -27,6 +32,7 @@ public class KnownCrawlerResult {
     }
 
     /**
+     * @return Verifier status (result)
      */
     @NotNull
     public KnownCrawlerResultStatus getStatus() {

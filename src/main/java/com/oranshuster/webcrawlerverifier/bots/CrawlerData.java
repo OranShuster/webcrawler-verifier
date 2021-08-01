@@ -23,12 +23,13 @@ public interface CrawlerData {
      * Specifications:
      * The string is in upper case, only using A-Z 0-9 and the hyphen "-", from 2 to 20 characters.
      * The string is the name of the bot, eg "GOOGLEBOT" not "GOOGLE".
+     * @return A string identifying this crawler
      */
     @NotNull
     String getIdentifier();
 
     /**
-     * One that returns true to interpret as that crawler, false for not.
+     * @return true to interpret as that crawler, false for not.
      */
     @NotNull
     Predicate<String> getUserAgentChecker();
@@ -36,6 +37,7 @@ public interface CrawlerData {
     /**
      * Entries look like "66.249.66.1".
      * Empty if no hardcoded IPs shall be allowed.
+     * @return Crawler known IPs
      */
     @NotNull
     Set<String> getIps();
@@ -43,6 +45,7 @@ public interface CrawlerData {
     /**
      * Entries look like "example.com" or "foo.example.com" in lower case, without trailing dot.
      * Empty if there is no known host name with reverse dns. For example DuckDuckGo currently doesn't provide this.
+     * @return Crawler known host names
      */
     @NotNull
     Set<String> getHostnames();

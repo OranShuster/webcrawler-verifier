@@ -18,6 +18,10 @@ public class KnownHostBotVerifierBuilder {
     private Cache<String, BotCheckerResult> dnsResultCache;
 
 
+    /**
+     * @param crawlerData Crawler data for verification
+     * @return Builder
+     */
     public KnownHostBotVerifierBuilder crawlerData(@NotNull CrawlerData crawlerData) {
         if (this.crawlerData!=null) throw new IllegalStateException("The crawlerData was set already!");
         this.crawlerData = crawlerData;
@@ -25,6 +29,8 @@ public class KnownHostBotVerifierBuilder {
     }
 
     /**
+     * @param dnsVerifier verifier
+     * @return Builder
      */
     public KnownHostBotVerifierBuilder dnsVerifier(@NotNull ReverseDnsVerifier dnsVerifier) {
         if (this.dnsVerifier!=null) throw new IllegalStateException("The dnsVerifier was set already!");
@@ -33,6 +39,7 @@ public class KnownHostBotVerifierBuilder {
     }
     /**
      * Uses the {@link DnsjavaReverseDnsVerifier} with the default name server(s) provided by the system.
+     * @return builder
      */
     public KnownHostBotVerifierBuilder dnsVerifierDefault() {
         return dnsVerifier(new DnsjavaReverseDnsVerifier());
@@ -41,6 +48,8 @@ public class KnownHostBotVerifierBuilder {
     /**
      * Useful and required because verifications are expensive.
      * If you must, for testing, then pass in a dummy cache that drops all.
+     * @param dnsResultCache A cache of previous DNS results
+     * @return Builder
      */
     public KnownHostBotVerifierBuilder dnsResultCache(@NotNull Cache<String, BotCheckerResult> dnsResultCache) {
         if (this.dnsResultCache !=null) throw new IllegalStateException("The dnsResultCache was set already!");
@@ -49,6 +58,7 @@ public class KnownHostBotVerifierBuilder {
     }
     /**
      * Uses maximumSize(1_000) and expireAfterWrite(3*24, TimeUnit.HOURS)
+     * @return Builder
      */
     public KnownHostBotVerifierBuilder dnsResultCacheDefault() {
         Cache<String, BotCheckerResult> cache = CacheBuilder.newBuilder()
@@ -59,6 +69,9 @@ public class KnownHostBotVerifierBuilder {
     }
 
 
+    /**
+     * @return A built instance of KnownHostBotVerifier
+     */
     @NotNull
     public KnownHostBotVerifierImpl build() {
         if (dnsVerifier==null) throw new IllegalArgumentException("No dnsVerifier provided!");

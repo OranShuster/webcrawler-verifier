@@ -14,12 +14,13 @@ import org.jetbrains.annotations.NotNull;
  *       These use a combination of DNS and reverse-DNS lookup.</li>
  *   <li>Those with a specified range of networks or ip addresses such as DuckDuckBot.
  *       These just compare the client's ip with the known crawler's network addresses.</li>
- * </ol></p>
+ * </ol>
  */
 public interface KnownHostBotVerifier {
 
     /**
      * @see CrawlerData#getIdentifier()
+     * @return Crawler identifier
      */
     @NotNull
     String getIdentifier();
@@ -28,10 +29,10 @@ public interface KnownHostBotVerifier {
      * @param userAgent As read from the http header "User-Agent" field.
      *                  You may pass in the empty string if the header field is empty or if it's not present.
      *                  But that will always result in a {@link BotCheckerResult#IS_NOT} answer.
-     * @param ip The ip address of the client, eg "66.249.66.1"
-     *           Be careful where you get this from, only read from http headers such as "X-Forwarded-For" if you
-     *           trust the source, e.g. the right-most address if your network puts one it.
-     *           See http://en.wikipedia.org/wiki/X-Forwarded-For
+     * @param ip        The ip address of the client, eg "66.249.66.1"
+     *                  Be careful where you get this from, only read from http headers such as "X-Forwarded-For" if you
+     *                  trust the source, e.g. the right-most address if your network puts one it.
+     *                  See http://en.wikipedia.org/wiki/X-Forwarded-For
      * @return The result of the bot checker
      */
     @NotNull

@@ -15,6 +15,7 @@ public class BuiltInCrawlers {
      * This way, the more important ones are checked first when iterating.
      *
      * <p>Don't want all? Filter on {@link CrawlerData#getIdentifier()}.</p>
+     * @return Returns a list of default crawlers
      */
     @NotNull
     public static List<CrawlerData> get() {

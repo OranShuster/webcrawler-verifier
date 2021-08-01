@@ -28,11 +28,4 @@ public enum BotCheckerResult {
      * situation not anticipated or a software bug.
      */
     FAILED
-    ;
-
-    public static void assertSize(int expected) {
-        if (values().length != expected)
-            throw new AssertionError("Update the code calling this with " + expected + "!");
-    }
-
 }

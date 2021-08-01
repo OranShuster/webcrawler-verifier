@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * Resources:
- * http://help.baidu.com/question?prod_en=master&class=498&id=1000973
+ * http://help.baidu.com/question?prod_en=master&amp;class=498&amp;id=1000973
  */
 public class BaiduSpiderData implements CrawlerData {
 

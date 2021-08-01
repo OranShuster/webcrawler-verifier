@@ -6,6 +6,7 @@ import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -16,6 +17,9 @@ public class DefaultKnownCrawlerDetector implements KnownCrawlerDetector {
     @NotNull
     private final List<KnownHostBotVerifier> verifiers;
 
+    /**
+     * @param verifiers List of crawler verifiers
+     */
     public DefaultKnownCrawlerDetector(@NotNull List<KnownHostBotVerifier> verifiers) {
         this.verifiers = ImmutableList.copyOf(verifiers);
     }
@@ -33,8 +37,9 @@ public class DefaultKnownCrawlerDetector implements KnownCrawlerDetector {
     }
 
     private KnownCrawlerResultStatus convert(BotCheckerResult check) {
-        BotCheckerResult.assertSize(4);
-        KnownCrawlerResultStatus.assertSize(3);
+        assert Objects.equals(4, BotCheckerResult.values().length);
+        assert Objects.equals(3, KnownCrawlerResultStatus.values().length);
+
         switch (check) {
             case IS:
                 return KnownCrawlerResultStatus.VERIFIED;

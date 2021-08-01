@@ -26,11 +26,4 @@ public enum KnownCrawlerResultStatus {
      * webmaster... is up to you.
      */
     FAILED
-    ;
-
-    public static void assertSize(int expected) {
-        if (values().length != expected)
-            throw new AssertionError("Update the code calling this with " + expected + "!");
-    }
-
 }
