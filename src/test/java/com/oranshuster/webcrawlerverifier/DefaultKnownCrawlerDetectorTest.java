@@ -49,6 +49,20 @@ public class DefaultKnownCrawlerDetectorTest {
         assertEquals(detector.detect("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", "55.55.55.55").get(), r);
     }
 
+    @Test
+    public void googleAdBot() throws Exception {
+        DefaultKnownCrawlerDetector detector = all();
+
+        KnownCrawlerResult r = new KnownCrawlerResult("GOOGLEADSBOT", KnownCrawlerResultStatus.VERIFIED);
+        assertEquals(detector.detect("Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)", "74.125.150.93").get(), r);
+        assertEquals(detector.detect("AdsBot-Google (+http://www.google.com/adsbot.html)", "74.125.150.85").get(), r);
+
+        //failing by ip:
+        r = new KnownCrawlerResult("GOOGLEADSBOT", KnownCrawlerResultStatus.IMPERSONATOR);
+        assertEquals(detector.detect("Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)", "55.55.55.55").get(), r);
+        assertEquals(detector.detect("AdsBot-Google (+http://www.google.com/adsbot.html)", "55.55.55.55").get(), r);
+    }
+
     /**
      * see http://www.bing.com/webmaster/help/which-crawlers-does-bing-use-8c184ec0
      */
