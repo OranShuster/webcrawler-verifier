@@ -1,6 +1,5 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,16 +17,13 @@ import java.util.Set;
  */
 public class BingBotData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = new Predicate<String>() {
-        @Override
-        public boolean apply(String userAgent) {
-            //see http://en.wikipedia.org/wiki/Bingbot
+    private static final java.util.function.Predicate<String> PREDICATE = userAgent -> {
+        //see http://en.wikipedia.org/wiki/Bingbot
 
-            //see http://en.wikipedia.org/wiki/Msnbot
-            //this was the previous bot.
-            //"As of February 2016 msnbot is still active ... (it was announced to retire "soon" quote some time ago...)"
-            return (userAgent != null && (userAgent.contains("bingbot") || userAgent.contains("msnbot")));
-        }
+        //see http://en.wikipedia.org/wiki/Msnbot
+        //this was the previous bot.
+        //"As of February 2016 msnbot is still active ... (it was announced to retire "soon" quote some time ago...)"
+        return (userAgent != null && (userAgent.contains("bingbot") || userAgent.contains("msnbot")));
     };
 
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("search.msn.com");
@@ -51,7 +47,7 @@ public class BingBotData implements CrawlerData {
 
     @NotNull
     @Override
-    public Predicate<String> getUserAgentChecker() {
+    public java.util.function.Predicate<String> getUserAgentChecker() {
         return PREDICATE;
     }
 

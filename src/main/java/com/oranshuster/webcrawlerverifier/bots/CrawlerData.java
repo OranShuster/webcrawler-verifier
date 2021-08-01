@@ -1,9 +1,9 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
-import com.google.common.base.Predicate;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Contains the data for one web crawler.

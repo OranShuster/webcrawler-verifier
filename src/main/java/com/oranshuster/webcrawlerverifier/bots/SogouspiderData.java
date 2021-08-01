@@ -1,12 +1,12 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * TODO for now not supported, unclear how to identify.
@@ -16,12 +16,7 @@ import java.util.Set;
  */
 public class SogouspiderData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = new Predicate<String>() {
-        @Override
-        public boolean apply(String userAgent) {
-            return userAgent != null && userAgent.toLowerCase(Locale.ENGLISH).contains("sogou");
-        }
-    };
+    private static final Predicate<String> PREDICATE = userAgent -> userAgent != null && userAgent.toLowerCase(Locale.ENGLISH).contains("sogou");
 
     /**
      * Nah, apparently they don't identify as this or any other domain? Dunno...
@@ -48,7 +43,7 @@ public class SogouspiderData implements CrawlerData {
 
     @NotNull
     @Override
-    public Predicate<String> getUserAgentChecker() {
+    public java.util.function.Predicate<String> getUserAgentChecker() {
         return PREDICATE;
     }
 

@@ -15,8 +15,8 @@ public class GoogleBotDataTest {
 
     @Test
     public void testGetUserAgentChecker() throws Exception {
-        assertTrue(GoogleBotData.getInstance().getUserAgentChecker().apply("foo Googlebot bar"));
-        assertFalse(GoogleBotData.getInstance().getUserAgentChecker().apply("foo Google bar"));
+        assertTrue(GoogleBotData.getInstance().getUserAgentChecker().test("foo Googlebot bar"));
+        assertFalse(GoogleBotData.getInstance().getUserAgentChecker().test("foo Google bar"));
     }
 
     @Test

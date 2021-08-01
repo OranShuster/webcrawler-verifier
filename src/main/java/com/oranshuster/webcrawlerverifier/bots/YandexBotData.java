@@ -1,11 +1,11 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Resources:
@@ -15,12 +15,7 @@ import java.util.Set;
  */
 public class YandexBotData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = new Predicate<String>() {
-        @Override
-        public boolean apply(String userAgent) {
-            return userAgent != null && userAgent.contains("Yandex");
-        }
-    };
+    private static final Predicate<String> PREDICATE = userAgent -> userAgent != null && userAgent.contains("Yandex");
 
     //exactly as documented by yandex:
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("yandex.ru", "yandex.net", "yandex.com");
@@ -44,7 +39,7 @@ public class YandexBotData implements CrawlerData {
 
     @NotNull
     @Override
-    public Predicate<String> getUserAgentChecker() {
+    public java.util.function.Predicate<String> getUserAgentChecker() {
         return PREDICATE;
     }
 
