@@ -12,24 +12,23 @@ import java.util.Set;
  * http://en.wikipedia.org/wiki/Googlebot
  * https://support.google.com/webmasters/answer/80553
  */
-public class GooglebotData implements CrawlerData {
+public class GoogleBotData implements CrawlerData {
 
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
-            if (userAgent.contains("Googlebot")) return true;
-            return false;
+            return userAgent != null && userAgent.contains("Googlebot");
         }
     };
 
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("googlebot.com");
 
 
-    private static final GooglebotData INSTANCE = new GooglebotData();
-    public static GooglebotData getInstance() {
+    private static final GoogleBotData INSTANCE = new GoogleBotData();
+    public static GoogleBotData getInstance() {
         return INSTANCE;
     }
-    private GooglebotData() {
+    private GoogleBotData() {
     }
 
 

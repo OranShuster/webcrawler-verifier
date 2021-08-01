@@ -9,25 +9,25 @@ import java.util.Set;
 
 /**
  * For the Yahoo search engine bot.
- *
+ * <p>
  * Yahoo changes their search provider every now and then. First they run their own (ones they bought),
  * then they let Bing do the job, then Google ...
- *
+ * <p>
  * Although they had announced to take their own Slurp offline, they never did. And recently the spidering
  * has increased again.
- *
+ * <p>
  * Resources:
  * http://en.wikipedia.org/wiki/Yahoo!_Slurp
  * https://help.yahoo.com/kb/search/slurp-crawling-page-sln22600.html
  * http://webmasters.stackexchange.com/questions/22565/is-there-any-reason-to-allow-yahoo-slurp-to-crawl-my-site
  */
-public class YahooslurpData implements CrawlerData {
+public class YahooSlurpData implements CrawlerData {
 
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
             //see http://en.wikipedia.org/wiki/Yahoo!_Slurp
-            return userAgent.contains("Yahoo! Slurp") || userAgent.contains("Yahoo Slurp");
+            return userAgent != null && (userAgent.contains("Yahoo! Slurp") || userAgent.contains("Yahoo Slurp"));
         }
     };
 
@@ -40,11 +40,13 @@ public class YahooslurpData implements CrawlerData {
     );
 
 
-    private static final YahooslurpData INSTANCE = new YahooslurpData();
-    public static YahooslurpData getInstance() {
+    private static final YahooSlurpData INSTANCE = new YahooSlurpData();
+
+    public static YahooSlurpData getInstance() {
         return INSTANCE;
     }
-    private YahooslurpData() {
+
+    private YahooSlurpData() {
     }
 
 

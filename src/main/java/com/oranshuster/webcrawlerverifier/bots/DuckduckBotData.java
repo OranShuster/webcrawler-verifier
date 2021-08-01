@@ -11,13 +11,12 @@ import java.util.Set;
  * Resources:
  * https://duckduckgo.com/duckduckbot
  */
-public class DuckduckbotData implements CrawlerData {
+public class DuckduckBotData implements CrawlerData {
 
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
-            if (userAgent.contains("DuckDuckBot")) return true;
-            return false;
+            return userAgent != null && userAgent.contains("DuckDuckBot");
         }
     };
 
@@ -27,11 +26,13 @@ public class DuckduckbotData implements CrawlerData {
     private static final ImmutableSet<String> IPS = ImmutableSet.of("72.94.249.34", "72.94.249.35", "72.94.249.36", "72.94.249.37", "72.94.249.38");
 
 
-    private static final DuckduckbotData INSTANCE = new DuckduckbotData();
-    public static DuckduckbotData getInstance() {
+    private static final DuckduckBotData INSTANCE = new DuckduckBotData();
+
+    public static DuckduckBotData getInstance() {
         return INSTANCE;
     }
-    private DuckduckbotData() {
+
+    private DuckduckBotData() {
     }
 
 

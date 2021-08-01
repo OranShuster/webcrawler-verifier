@@ -13,13 +13,12 @@ import java.util.Set;
  * http://help.yandex.com/search/robots/check-robot.xml#check-robot
  * http://searchenginewatch.com/sew/news/2067357/bye-bye-crawler-blocking-parasites
  */
-public class YandexbotData implements CrawlerData {
+public class YandexBotData implements CrawlerData {
 
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
-            if (userAgent.contains("Yandex")) return true;
-            return false;
+            return userAgent != null && userAgent.contains("Yandex");
         }
     };
 
@@ -27,11 +26,13 @@ public class YandexbotData implements CrawlerData {
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("yandex.ru", "yandex.net", "yandex.com");
 
 
-    private static final YandexbotData INSTANCE = new YandexbotData();
-    public static YandexbotData getInstance() {
+    private static final YandexBotData INSTANCE = new YandexBotData();
+
+    public static YandexBotData getInstance() {
         return INSTANCE;
     }
-    private YandexbotData() {
+
+    private YandexBotData() {
     }
 
 

@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier;
 
+import com.oranshuster.webcrawlerverifier.bots.CrawlerData;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,7 +19,7 @@ public class KnownCrawlerResult {
     }
 
     /**
-     * @see com.optimaize.webcrawlerverifier.bots.CrawlerData#getIdentifier()
+     * @see CrawlerData#getIdentifier()
      */
     @NotNull
     public String getIdentifier() {
@@ -50,9 +51,7 @@ public class KnownCrawlerResult {
         KnownCrawlerResult result = (KnownCrawlerResult) o;
 
         if (status != result.status) return false;
-        if (!identifier.equals(result.identifier)) return false;
-
-        return true;
+        return identifier.equals(result.identifier);
     }
 
     @Override

@@ -19,22 +19,23 @@ public class BuiltInCrawlers {
     @NotNull
     public static List<CrawlerData> get() {
         return ImmutableList.of(
-                //currently Bing seems to be spidering the most, but still...
-                GooglebotData.getInstance(),
-                BingbotData.getInstance(),
+                //currently, Bing seems to be spidering the most, but still...
+                GoogleBotData.getInstance(),
+
+                BingBotData.getInstance(),
 
                 //Baidu spiders a lot too.
-                BaiduspiderData.getInstance(),
+                BaiduSpiderData.getInstance(),
 
-                //i don't know about these...
-                YandexbotData.getInstance(),
+                //I don't know about these...
+                YandexBotData.getInstance(),
                 //SogouspiderData.getInstance(),
 
                 //here come the unimportant ones.
-                DuckduckbotData.getInstance(),
+                DuckduckBotData.getInstance(),
 
                 //Slurp is end-of-life, can probably be removed soon.
-                YahooslurpData.getInstance()
+                YahooSlurpData.getInstance()
         );
     }
 

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public interface KnownHostBotVerifier {
 
     /**
-     * @see com.optimaize.webcrawlerverifier.bots.CrawlerData#getIdentifier()
+     * @see CrawlerData#getIdentifier()
      */
     @NotNull
     String getIdentifier();
@@ -30,11 +30,11 @@ public interface KnownHostBotVerifier {
      *                  But that will always result in a {@link BotCheckerResult#IS_NOT} answer.
      * @param ip The ip address of the client, eg "66.249.66.1"
      *           Be careful where you get this from, only read from http headers such as "X-Forwarded-For" if you
-     *           trust the source, eg the right-most address if your network puts one it.
+     *           trust the source, e.g. the right-most address if your network puts one it.
      *           See http://en.wikipedia.org/wiki/X-Forwarded-For
-     * @return
+     * @return The result of the bot checker
      */
     @NotNull
-    BotCheckerResult check(@NotNull String userAgent, @NotNull String ip);
+    BotCheckerResult check(String userAgent, @NotNull String ip);
 
 }

@@ -11,13 +11,12 @@ import java.util.Set;
  * Resources:
  * http://help.baidu.com/question?prod_en=master&class=498&id=1000973
  */
-public class BaiduspiderData implements CrawlerData {
+public class BaiduSpiderData implements CrawlerData {
 
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
-            if (userAgent.contains("Baiduspider")) return true;
-            return false;
+            return userAgent != null && userAgent.contains("Baiduspider");
         }
     };
 
@@ -28,11 +27,11 @@ public class BaiduspiderData implements CrawlerData {
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("baidu.com", "baidu.jp");
 
 
-    private static final BaiduspiderData INSTANCE = new BaiduspiderData();
-    public static BaiduspiderData getInstance() {
+    private static final BaiduSpiderData INSTANCE = new BaiduSpiderData();
+    public static BaiduSpiderData getInstance() {
         return INSTANCE;
     }
-    private BaiduspiderData() {
+    private BaiduSpiderData() {
     }
 
 

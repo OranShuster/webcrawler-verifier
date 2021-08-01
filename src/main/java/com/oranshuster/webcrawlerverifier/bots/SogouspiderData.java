@@ -10,9 +10,6 @@ import java.util.Set;
 
 /**
  * TODO for now not supported, unclear how to identify.
- *
- *
- *
  * Resources:
  * http://searchenginewatch.com/sew/news/2067357/bye-bye-crawler-blocking-parasites
  * http://en.wikipedia.org/wiki/Sogou
@@ -22,8 +19,7 @@ public class SogouspiderData implements CrawlerData {
     private static final Predicate<String> PREDICATE = new Predicate<String>() {
         @Override
         public boolean apply(String userAgent) {
-            if (userAgent.toLowerCase(Locale.ENGLISH).contains("sogou")) return true;
-            return false;
+            return userAgent != null && userAgent.toLowerCase(Locale.ENGLISH).contains("sogou");
         }
     };
 
@@ -35,10 +31,11 @@ public class SogouspiderData implements CrawlerData {
 
 
     private static final SogouspiderData INSTANCE = new SogouspiderData();
+
     public static SogouspiderData getInstance() {
-        if (true) throw new UnsupportedOperationException("Not supported yet.");
-        return INSTANCE;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
+
     private SogouspiderData() {
     }
 

@@ -11,15 +11,18 @@ import static org.testng.Assert.assertFalse;
 
 /**
  * These are not unit tests, they are real world data tests. They may fail if
- *  - a provider has changed their network setup
- *  - internet drops
+ * - a provider has changed their network setup
+ * - internet drops
  */
+@SuppressWarnings("ALL")
 public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void none() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
         assertFalse(detector.detect("", "127.0.0.1").isPresent());
+        assertFalse(detector.detect(" ", "127.0.0.1").isPresent());
+        assertFalse(detector.detect(null, "127.0.0.1").isPresent());
     }
 
     /**
@@ -50,7 +53,7 @@ public class DefaultKnownCrawlerDetectorTest {
      * see http://www.bing.com/webmaster/help/which-crawlers-does-bing-use-8c184ec0
      */
     @Test
-    public void bingbot() throws Exception {
+    public void bingBot() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
 
         KnownCrawlerResult r = new KnownCrawlerResult("BINGBOT", KnownCrawlerResultStatus.VERIFIED);
@@ -69,7 +72,7 @@ public class DefaultKnownCrawlerDetectorTest {
     }
 
     @Test
-    public void baiduspider() throws Exception {
+    public void baiduSpider() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
 
         KnownCrawlerResult r = new KnownCrawlerResult("BAIDUSPIDER", KnownCrawlerResultStatus.VERIFIED);
@@ -77,7 +80,7 @@ public class DefaultKnownCrawlerDetectorTest {
         assertEquals(detector.detect("Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)", "123.125.66.120").get(), r);
 
         //see https://github.com/optimaize/webcrawler-verifier/issues/4 this fails, open task.
-//        assertEquals(detector.detect("Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)", "180.76.15.14").get(), r);
+        //assertEquals(detector.detect("Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)", "180.76.15.14").get(), r);
 
         //failing by ip:
         r = new KnownCrawlerResult("BAIDUSPIDER", KnownCrawlerResultStatus.IMPERSONATOR);
@@ -85,7 +88,7 @@ public class DefaultKnownCrawlerDetectorTest {
     }
 
     @Test
-    public void yandexbot() throws Exception {
+    public void yandexBot() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
 
         KnownCrawlerResult r = new KnownCrawlerResult("YANDEXBOT", KnownCrawlerResultStatus.VERIFIED);
@@ -111,7 +114,7 @@ public class DefaultKnownCrawlerDetectorTest {
 //    }
 
     @Test
-    public void duckduckbot() throws Exception {
+    public void duckduckBot() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
 
         KnownCrawlerResult r = new KnownCrawlerResult("DUCKDUCKBOT", KnownCrawlerResultStatus.VERIFIED);
@@ -123,7 +126,7 @@ public class DefaultKnownCrawlerDetectorTest {
     }
 
     @Test
-    public void yahooslurp() throws Exception {
+    public void yahooSlurp() throws Exception {
         DefaultKnownCrawlerDetector detector = all();
 
         KnownCrawlerResult r;
