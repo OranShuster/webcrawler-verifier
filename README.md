@@ -1,15 +1,18 @@
 # webcrawler-verifier
 
-Webcralwer-Verifier is a Java library to ensure that robots are from the operator they claim to be,
-eg that Googlebot is actually coming from Google and not from some spoofer.
+Webcrawler-Verifier is a Java library to ensure that robots are from the operator they claim to be,
+e.g. that Googlebot is actually coming from Google and not from some spoofer.
+
+## Original Author 
+This project was forked from [optimaze](https://github.com/optimaize/webcrawler-verifier) and he should get 110% of the credit for his work on this library
 
 
 ## Maven
 
     <dependency>
-        <groupId>com.optimaize.webcrawlerverifier</groupId>
+        <groupId>com.oranshuster.webcrawlerverifier</groupId>
         <artifactId>webcrawlerverifier</artifactId>
-        <version>0.1</version>
+        <version>0.2</version>
     </dependency>
 
 
@@ -33,11 +36,12 @@ eg that Googlebot is actually coming from Google and not from some spoofer.
 ## Built in crawler detection
 
 1. Google: Googlebot
-1. Bing: Bingbot
-1. Baidu: Baidu spider
-1. Yandex: Yandexbot
-1. DuckDuckGo: DuckDuckBot
-1. Yahoo: Yahoo Slurp (end of life, uses Bingbot now)
+2. Google AdsBot: AdsBot-Google
+3. Bing: Bingbot
+4. Baidu: Baidu spider
+5. Yandex: Yandexbot
+6. DuckDuckGo: DuckDuckBot
+7. Yahoo: Yahoo Slurp (end of life, uses Bingbot now)
 
 Contributions are welcome.
 Sogou (Sogouspider), archive.org, and more would be nice.
