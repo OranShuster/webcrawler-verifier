@@ -3,8 +3,9 @@
 Webcrawler-Verifier is a Java library to ensure that robots are from the operator they claim to be,
 e.g. that Googlebot is actually coming from Google and not from some spoofer.
 
-## Original Author 
+## About this fork 
 This project was forked from [optimaze](https://github.com/optimaize/webcrawler-verifier) and he should get 110% of the credit for his work on this library
+Additionally, code from pull requests and other forks was used in this version, original authors are noted in the LICENSE file and in code
 
 
 ## Maven

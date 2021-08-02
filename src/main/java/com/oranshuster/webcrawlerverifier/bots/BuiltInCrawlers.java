@@ -37,7 +37,8 @@ public class BuiltInCrawlers {
                 DuckduckBotData.getInstance(),
 
                 //Slurp is end-of-life, can probably be removed soon.
-                YahooSlurpData.getInstance()
+                YahooSlurpData.getInstance(),
+                QwantBotData.getInstance()
         );
     }
 
