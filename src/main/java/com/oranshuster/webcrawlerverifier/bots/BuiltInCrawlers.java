@@ -15,6 +15,7 @@ public class BuiltInCrawlers {
      * This way, the more important ones are checked first when iterating.
      *
      * <p>Don't want all? Filter on {@link CrawlerData#getIdentifier()}.</p>
+     *
      * @return Returns a list of default crawlers
      */
     @NotNull
@@ -38,7 +39,8 @@ public class BuiltInCrawlers {
 
                 //Slurp is end-of-life, can probably be removed soon.
                 YahooSlurpData.getInstance(),
-                QwantBotData.getInstance()
+                QwantBotData.getInstance(),
+                InternetArchiveBotData.getInstance()
         );
     }
 

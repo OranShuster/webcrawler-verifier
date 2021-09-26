@@ -10,7 +10,7 @@ public class BuiltInCrawlersTest {
 
     @Test
     public void expectCount() throws Exception {
-        assertEquals(BuiltInCrawlers.get().size(), 8); //change when new ones are added
+        assertEquals(BuiltInCrawlers.get().size(), 9); //change when new ones are added
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BuiltInCrawlersTest {
     @Test
     public void validateIpHostnames() throws Exception {
         for (CrawlerData crawlerData : BuiltInCrawlers.get()) {
-            if (crawlerData.getIps().isEmpty() && crawlerData.getHostnames().isEmpty()) {
+            if (crawlerData.getIps().isEmpty() && crawlerData.getHostnames().isEmpty() && crawlerData.getUserAgentChecker() == null) {
                 fail("Does not provide any data: >>>"+crawlerData.getIdentifier()+"<<<");
             }
             for (String ip : crawlerData.getIps()) {
