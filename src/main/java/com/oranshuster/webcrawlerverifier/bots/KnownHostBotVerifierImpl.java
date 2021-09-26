@@ -2,21 +2,19 @@ package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.cache.Cache;
 import com.oranshuster.webcrawlerverifier.dns.ReverseDnsVerifier;
+import nl.basjes.parse.useragent.UserAgent;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
-
-
-
 /**
  *
  */
 class KnownHostBotVerifierImpl implements KnownHostBotVerifier {
-
     private static final Logger log = LoggerFactory.getLogger(KnownHostBotVerifierImpl.class);
 
     @NotNull
@@ -42,8 +40,13 @@ class KnownHostBotVerifierImpl implements KnownHostBotVerifier {
 
     @Override
     @NotNull
-    public BotCheckerResult check(String userAgent, @NotNull String ip) {
-        if (isNullOrEmpty(userAgent) || !crawlerData.getUserAgentChecker().test(userAgent)) {
+    public BotCheckerResult check(String userAgent, @NotNull String ip, @NotNull UserAgentAnalyzer uaa) {
+        if (StringUtils.isBlank(userAgent)) {
+            return BotCheckerResult.IS_NOT;
+        }
+
+        UserAgent uaAnalyzerResult = uaa.parse(userAgent);
+        if (!crawlerData.getUserAgentChecker().test(uaAnalyzerResult)) {
             return BotCheckerResult.IS_NOT;
         } else {
             Set<String> permittedIps = crawlerData.getIps();

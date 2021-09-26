@@ -1,6 +1,7 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.collect.ImmutableSet;
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -14,7 +15,7 @@ import java.util.function.Predicate;
  */
 public class GoogleAdsBotData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = userAgent -> userAgent != null && userAgent.contains("AdsBot-Google");
+    private static final Predicate<UserAgent> PREDICATE = ua -> ua.getUserAgentString().contains("AdsBot-Google");
 
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of("googlebot.com", "google.com");
 
@@ -37,7 +38,7 @@ public class GoogleAdsBotData implements CrawlerData {
 
     @NotNull
     @Override
-    public java.util.function.Predicate<String> getUserAgentChecker() {
+    public Predicate<UserAgent> getUserAgentChecker() {
         return PREDICATE;
     }
 

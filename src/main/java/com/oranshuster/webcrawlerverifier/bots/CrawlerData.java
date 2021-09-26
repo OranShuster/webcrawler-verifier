@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -32,7 +33,7 @@ public interface CrawlerData {
      * @return true to interpret as that crawler, false for not.
      */
     @NotNull
-    Predicate<String> getUserAgentChecker();
+    Predicate<UserAgent> getUserAgentChecker();
 
     /**
      * Entries look like "66.249.66.1".

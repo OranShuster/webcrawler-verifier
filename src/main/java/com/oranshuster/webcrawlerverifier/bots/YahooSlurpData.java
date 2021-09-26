@@ -1,6 +1,7 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.collect.ImmutableSet;
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -23,9 +24,10 @@ import java.util.function.Predicate;
  */
 public class YahooSlurpData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = userAgent -> {
+    private static final Predicate<UserAgent> PREDICATE = ua -> {
         //see http://en.wikipedia.org/wiki/Yahoo!_Slurp
-        return userAgent != null && (userAgent.contains("Yahoo! Slurp") || userAgent.contains("Yahoo Slurp"));
+        String userAgent = ua.getUserAgentString();
+        return (userAgent.contains("Yahoo! Slurp") || userAgent.contains("Yahoo Slurp"));
     };
 
     private static final ImmutableSet<String> HOSTNAMES = ImmutableSet.of(
@@ -55,7 +57,7 @@ public class YahooSlurpData implements CrawlerData {
 
     @NotNull
     @Override
-    public java.util.function.Predicate<String> getUserAgentChecker() {
+    public Predicate<UserAgent> getUserAgentChecker() {
         return PREDICATE;
     }
 

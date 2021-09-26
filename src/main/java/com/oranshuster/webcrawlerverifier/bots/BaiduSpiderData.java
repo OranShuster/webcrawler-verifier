@@ -1,10 +1,12 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.collect.ImmutableSet;
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Resources:
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 public class BaiduSpiderData implements CrawlerData {
 
-    private static final java.util.function.Predicate<String> PREDICATE = userAgent -> userAgent != null && userAgent.contains("Baiduspider");
+    private static final Predicate<UserAgent> PREDICATE = ua -> ua.getUserAgentString().contains("Baiduspider");
 
     /**
      * Source: http://help.baidu.com/question?prod_en=master&class=498&id=1000973
@@ -39,7 +41,7 @@ public class BaiduSpiderData implements CrawlerData {
 
     @Override
     @NotNull
-    public java.util.function.Predicate<String> getUserAgentChecker() {
+    public Predicate<UserAgent> getUserAgentChecker() {
         return PREDICATE;
     }
 

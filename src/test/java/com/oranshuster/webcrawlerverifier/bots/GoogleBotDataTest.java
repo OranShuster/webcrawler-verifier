@@ -1,12 +1,24 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.collect.ImmutableList;
+import nl.basjes.parse.useragent.UserAgent;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 @SuppressWarnings("ALL")
 public class GoogleBotDataTest {
+    private UserAgentAnalyzer uaa;
+
+    @BeforeClass
+    public void beforeClass() {
+        uaa = UserAgentAnalyzer.newBuilder()
+                .hideMatcherLoadStats()
+                .withCache(10000)
+                .build();
+    }
 
     @Test
     public void testGetIdentifier() throws Exception {
@@ -15,8 +27,11 @@ public class GoogleBotDataTest {
 
     @Test
     public void testGetUserAgentChecker() throws Exception {
-        assertTrue(GoogleBotData.getInstance().getUserAgentChecker().test("foo Googlebot bar"));
-        assertFalse(GoogleBotData.getInstance().getUserAgentChecker().test("foo Google bar"));
+        UserAgent ua = uaa.parse("foo Googlebot bar");
+        assertTrue(GoogleBotData.getInstance().getUserAgentChecker().test(ua));
+
+        ua = uaa.parse("foo Google bar");
+        assertFalse(GoogleBotData.getInstance().getUserAgentChecker().test(ua));
     }
 
     @Test
@@ -26,6 +41,6 @@ public class GoogleBotDataTest {
 
     @Test
     public void testGetHostnames() throws Exception {
-        assertEquals(GoogleBotData.getInstance().getHostnames(), ImmutableList.of("googlebot.com","google.com"));
+        assertEquals(GoogleBotData.getInstance().getHostnames(), ImmutableList.of("googlebot.com", "google.com"));
     }
 }

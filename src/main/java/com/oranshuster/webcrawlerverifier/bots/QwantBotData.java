@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class QwantBotData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = userAgent -> userAgent.toLowerCase(Locale.ENGLISH).contains("qwant-news");
+    private static final Predicate<UserAgent> PREDICATE = ua -> ua.getUserAgentString().toLowerCase(Locale.ENGLISH).contains("qwant-news");
 
     private static final Set<String> IPS = IntStream.rangeClosed(0, 255).boxed()
             .map(String::valueOf)
@@ -35,7 +36,7 @@ public class QwantBotData implements CrawlerData {
 
     @NotNull
     @Override
-    public Predicate<String> getUserAgentChecker() {
+    public Predicate<UserAgent> getUserAgentChecker() {
         return PREDICATE;
     }
 

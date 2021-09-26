@@ -1,6 +1,8 @@
 package com.oranshuster.webcrawlerverifier;
 
 import com.oranshuster.webcrawlerverifier.bots.*;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -16,10 +18,15 @@ import static org.testng.Assert.assertFalse;
  */
 @SuppressWarnings("ALL")
 public class DefaultKnownCrawlerDetectorTest {
+    DefaultKnownCrawlerDetector detector;
+
+    @BeforeClass
+    public void beforeClass() {
+        detector = all();
+    }
 
     @Test
     public void none() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
         assertFalse(detector.detect("", "127.0.0.1").isPresent());
         assertFalse(detector.detect(" ", "127.0.0.1").isPresent());
         assertFalse(detector.detect(null, "127.0.0.1").isPresent());
@@ -30,8 +37,6 @@ public class DefaultKnownCrawlerDetectorTest {
      */
     @Test
     public void googlebot() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r = new KnownCrawlerResult("GOOGLEBOT", KnownCrawlerResultStatus.VERIFIED);
         assertEquals(detector.detect("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", "66.249.66.1").get(), r);
         assertEquals(detector.detect("Googlebot/2.1 (+http://www.google.com/bot.html)", "66.249.66.1").get(), r);
@@ -50,8 +55,6 @@ public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void googleAdBot() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r = new KnownCrawlerResult("GOOGLEADSBOT", KnownCrawlerResultStatus.VERIFIED);
         assertEquals(detector.detect("Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)", "74.125.150.93").get(), r);
         assertEquals(detector.detect("AdsBot-Google (+http://www.google.com/adsbot.html)", "74.125.150.85").get(), r);
@@ -67,8 +70,6 @@ public class DefaultKnownCrawlerDetectorTest {
      */
     @Test
     public void bingBot() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r = new KnownCrawlerResult("BINGBOT", KnownCrawlerResultStatus.VERIFIED);
         assertEquals(detector.detect("Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)", "13.66.139.82").get(), r);
         assertEquals(detector.detect("msnbot/2.0b (+http://search.msn.com/msnbot.htm)", "13.66.139.82").get(), r);
@@ -86,8 +87,6 @@ public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void baiduSpider() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         //Forward DNS lookup on the host does not work, so these tests will check for IMPERSONATOR instead
         KnownCrawlerResult r = new KnownCrawlerResult("BAIDUSPIDER", KnownCrawlerResultStatus.IMPERSONATOR);
         assertEquals(detector.detect("Baiduspider+(+http://www.baidu.com/search/spider.htm)", "123.125.66.120").get(), r);
@@ -103,8 +102,6 @@ public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void yandexBot() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r = new KnownCrawlerResult("YANDEXBOT", KnownCrawlerResultStatus.VERIFIED);
         //previously the test successfully checked the ip "141.8.189.111" but as of 2016-02-18 that ip has no reverse dns anymore pointing to yandex.
         //so i replaced it with 141.8.142.60 found here https://udger.com/resources/ua-list/bot-detail?bot=YandexBot
@@ -129,8 +126,6 @@ public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void duckduckBot() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r = new KnownCrawlerResult("DUCKDUCKBOT", KnownCrawlerResultStatus.VERIFIED);
         assertEquals(detector.detect("DuckDuckBot/1.0; (+http://duckduckgo.com/duckduckbot.html)", "72.94.249.35").get(), r);
 
@@ -141,8 +136,6 @@ public class DefaultKnownCrawlerDetectorTest {
 
     @Test
     public void yahooSlurp() throws Exception {
-        DefaultKnownCrawlerDetector detector = all();
-
         KnownCrawlerResult r;
 
         r = new KnownCrawlerResult("YAHOOSLURP", KnownCrawlerResultStatus.VERIFIED);
@@ -155,6 +148,12 @@ public class DefaultKnownCrawlerDetectorTest {
 
 
     private DefaultKnownCrawlerDetector all() {
+        UserAgentAnalyzer uaa = UserAgentAnalyzer
+                .newBuilder()
+                .hideMatcherLoadStats()
+                .withoutCache()
+                .build();
+
         List<KnownHostBotVerifier> verifiers = new ArrayList<>();
         for (CrawlerData crawlerData : BuiltInCrawlers.get()) {
             verifiers.add(new KnownHostBotVerifierBuilder()
@@ -163,7 +162,7 @@ public class DefaultKnownCrawlerDetectorTest {
                     .dnsResultCacheDefault()
                     .build());
         }
-        return new DefaultKnownCrawlerDetector(verifiers);
+        return new DefaultKnownCrawlerDetector(verifiers, uaa);
     }
 
 }

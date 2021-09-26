@@ -1,6 +1,7 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
 import com.google.common.collect.ImmutableSet;
+import nl.basjes.parse.useragent.UserAgent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -13,7 +14,7 @@ import java.util.function.Predicate;
  */
 public class DuckduckBotData implements CrawlerData {
 
-    private static final Predicate<String> PREDICATE = userAgent -> userAgent != null && userAgent.contains("DuckDuckBot");
+    private static final Predicate<UserAgent> PREDICATE = ua -> ua.getUserAgentString().contains("DuckDuckBot");
 
     /**
      * As documented by duckduckgo: https://duckduckgo.com/duckduckbot
@@ -39,7 +40,7 @@ public class DuckduckBotData implements CrawlerData {
 
     @NotNull
     @Override
-    public java.util.function.Predicate<String> getUserAgentChecker() {
+    public Predicate<UserAgent> getUserAgentChecker() {
         return PREDICATE;
     }
 

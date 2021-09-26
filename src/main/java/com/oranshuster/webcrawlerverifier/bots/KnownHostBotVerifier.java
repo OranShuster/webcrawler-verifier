@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier.bots;
 
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -19,8 +20,8 @@ import org.jetbrains.annotations.NotNull;
 public interface KnownHostBotVerifier {
 
     /**
-     * @see CrawlerData#getIdentifier()
      * @return Crawler identifier
+     * @see CrawlerData#getIdentifier()
      */
     @NotNull
     String getIdentifier();
@@ -33,9 +34,10 @@ public interface KnownHostBotVerifier {
      *                  Be careful where you get this from, only read from http headers such as "X-Forwarded-For" if you
      *                  trust the source, e.g. the right-most address if your network puts one it.
      *                  See http://en.wikipedia.org/wiki/X-Forwarded-For
+     * @param uaa       Instance of UserAgentAnalyzer to be used for bot detection
      * @return The result of the bot checker
      */
     @NotNull
-    BotCheckerResult check(String userAgent, @NotNull String ip);
+    BotCheckerResult check(String userAgent, @NotNull String ip, @NotNull UserAgentAnalyzer uaa);
 
 }
