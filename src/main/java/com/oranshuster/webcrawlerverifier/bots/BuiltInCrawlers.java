@@ -40,7 +40,8 @@ public class BuiltInCrawlers {
                 //Slurp is end-of-life, can probably be removed soon.
                 YahooSlurpData.getInstance(),
                 QwantBotData.getInstance(),
-                InternetArchiveBotData.getInstance()
+                InternetArchiveBotData.getInstance(),
+                CriteoBotData.getInstance()
         );
     }
 
