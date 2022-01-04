@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier.dns;
 
+import com.oranshuster.webcrawlerverifier.annotations.RetryCountIfFailed;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
@@ -12,6 +13,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class DnsjavaReverseDnsVerifierTest {
 
+    @RetryCountIfFailed(3)
     @Test
     public void testVerify() throws Exception {
         DnsjavaReverseDnsVerifier verifier = new DnsjavaReverseDnsVerifier();
