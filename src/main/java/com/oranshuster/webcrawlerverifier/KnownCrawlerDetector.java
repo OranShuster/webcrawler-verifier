@@ -18,5 +18,4 @@ public interface KnownCrawlerDetector {
      */
     @NotNull
     Optional<KnownCrawlerResult> detect(String userAgent, @NotNull String ip);
-
 }

@@ -41,7 +41,7 @@ public class DefaultKnownCrawlerDetector implements KnownCrawlerDetector {
         return Optional.empty();
     }
 
-    private KnownCrawlerResultStatus convert(BotCheckerResult check) {
+    protected KnownCrawlerResultStatus convert(BotCheckerResult check) {
         assert Objects.equals(4, BotCheckerResult.values().length);
         assert Objects.equals(3, KnownCrawlerResultStatus.values().length);
 

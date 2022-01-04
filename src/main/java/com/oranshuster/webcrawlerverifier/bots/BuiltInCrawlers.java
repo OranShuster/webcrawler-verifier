@@ -41,7 +41,8 @@ public class BuiltInCrawlers {
                 YahooSlurpData.getInstance(),
                 QwantBotData.getInstance(),
                 InternetArchiveBotData.getInstance(),
-                CriteoBotData.getInstance()
+                CriteoBotData.getInstance(),
+                WeboramaBotData.getInstance()
         );
     }
 
