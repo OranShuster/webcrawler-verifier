@@ -42,7 +42,8 @@ public class BuiltInCrawlers {
                 QwantBotData.getInstance(),
                 InternetArchiveBotData.getInstance(),
                 CriteoBotData.getInstance(),
-                WeboramaBotData.getInstance()
+                WeboramaBotData.getInstance(),
+                BuckBotData.getInstance()
         );
     }
 
