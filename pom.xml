@@ -4,7 +4,7 @@
     <groupId>io.github.oranshuster</groupId>
     <artifactId>webcrawlerverifier</artifactId>
     <name>webcrawlerverifier</name>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/OranShuster/webcrawler-verifier</url>
