@@ -10,7 +10,7 @@ public class BuiltInCrawlersTest {
 
     @Test
     public void expectCount() throws Exception {
-        assertEquals(BuiltInCrawlers.get().size(), 14); //change when new ones are added
+        assertEquals(BuiltInCrawlers.get().size(), 15); //change when new ones are added
     }
 
     @Test
