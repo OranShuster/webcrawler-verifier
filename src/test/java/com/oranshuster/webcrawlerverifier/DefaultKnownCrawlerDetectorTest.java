@@ -1,5 +1,6 @@
 package com.oranshuster.webcrawlerverifier;
 
+import com.oranshuster.webcrawlerverifier.annotations.RetryCountIfFailed;
 import com.oranshuster.webcrawlerverifier.bots.*;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
 import org.testng.annotations.BeforeClass;
@@ -101,11 +102,12 @@ public class DefaultKnownCrawlerDetectorTest {
     }
 
     @Test
+    @RetryCountIfFailed(3)
     public void yandexBot() throws Exception {
         KnownCrawlerResult r = new KnownCrawlerResult("YANDEXBOT", KnownCrawlerResultStatus.VERIFIED);
         //previously the test successfully checked the ip "141.8.189.111" but as of 2016-02-18 that ip has no reverse dns anymore pointing to yandex.
-        //so i replaced it with 141.8.142.60 found here https://udger.com/resources/ua-list/bot-detail?bot=YandexBot
-        assertEquals(detector.detect("Mozilla/5.0 (compatible; YandexDirect/3.0; +http://yandex.com/bots)", "141.8.142.60").get(), r);
+        //so i replaced it with 5.255.253.173 found here https://udger.com/resources/ua-list/bot-detail?bot=YandexBot
+        assertEquals(detector.detect("Mozilla/5.0 (compatible; YandexDirect/3.0; +http://yandex.com/bots)", "5.255.253.173").get(), r);
 
         //failing by ip:
         r = new KnownCrawlerResult("YANDEXBOT", KnownCrawlerResultStatus.IMPERSONATOR);
