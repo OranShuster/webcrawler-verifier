@@ -47,7 +47,8 @@ public class BuiltInCrawlers {
                 GumGumBotData.getInstance(),
                 IntegralAdScienceBotData.getInstance(),
                 MaxPointBotData.getInstance(),
-                SottopopBotData.getInstance()
+                SottopopBotData.getInstance(),
+                OmgiliBotData.getInstance()
         );
     }
 
