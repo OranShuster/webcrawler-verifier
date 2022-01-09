@@ -114,18 +114,6 @@ public class DefaultKnownCrawlerDetectorTest {
         assertEquals(detector.detect("Mozilla/5.0 (compatible; YandexDirect/3.0; +http://yandex.com/bots)", "55.55.55.55").get(), r);
     }
 
-//    @Test
-//    public void sogouspider() throws Exception {
-//        DefaultKnownCrawlerDetector detector = all();
-//
-//        KnownCrawlerResult r = new KnownCrawlerResult("SOGOUSPIDER", KnownCrawlerResultStatus.VERIFIED);
-//        assertEquals(detector.detect("Sogou web spider/4.0(+http://www.sogou.com/docs/help/webmasters.htm#07)", "220.181.94.212").get(), r);
-//
-//        //failing by ip:
-//        r = new KnownCrawlerResult("SOGOUSPIDER", KnownCrawlerResultStatus.IMPERSONATOR);
-//        assertEquals(detector.detect("Sogou web spider/4.0(+http://www.sogou.com/docs/help/webmasters.htm#07)", "55.55.55.55").get(), r);
-//    }
-
     @Test
     public void duckduckBot() throws Exception {
         KnownCrawlerResult r = new KnownCrawlerResult("DUCKDUCKBOT", KnownCrawlerResultStatus.VERIFIED);
