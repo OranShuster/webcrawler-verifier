@@ -1,7 +1,10 @@
 package com.oranshuster.webcrawlerverifier;
 
 import com.oranshuster.webcrawlerverifier.annotations.RetryCountIfFailed;
-import com.oranshuster.webcrawlerverifier.bots.*;
+import com.oranshuster.webcrawlerverifier.bots.BuiltInCrawlers;
+import com.oranshuster.webcrawlerverifier.bots.CrawlerData;
+import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifier;
+import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifierBuilder;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -134,6 +137,18 @@ public class DefaultKnownCrawlerDetectorTest {
         //failing by ip:
         r = new KnownCrawlerResult("YAHOOSLURP", KnownCrawlerResultStatus.IMPERSONATOR);
         assertEquals(detector.detect("Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)", "55.55.55.55").get(), r);
+    }
+
+    @Test
+    public void appleBot() throws Exception {
+        KnownCrawlerResult r;
+
+        r = new KnownCrawlerResult("APPLEBOT", KnownCrawlerResultStatus.VERIFIED);
+        assertEquals(detector.detect("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5 (Applebot/0.1)", "17.58.101.179").get(), r);
+
+        //failing by ip:
+        r = new KnownCrawlerResult("APPLEBOT", KnownCrawlerResultStatus.IMPERSONATOR);
+        assertEquals(detector.detect("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5 (Applebot/0.1)", "55.55.55.55").get(), r);
     }
 
 

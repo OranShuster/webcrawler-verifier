@@ -25,6 +25,7 @@ public class BuiltInCrawlers {
                 GoogleBotData.getInstance(),
                 GoogleAdsBotData.getInstance(),
                 FacebookBotData.getInstance(),
+                AppleBotData.getInstance(),
                 BingBotData.getInstance(),
 
                 //Baidu spiders a lot too.
