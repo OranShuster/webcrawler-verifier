@@ -6,10 +6,12 @@ import com.oranshuster.webcrawlerverifier.bots.CrawlerData;
 import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifier;
 import com.oranshuster.webcrawlerverifier.bots.KnownHostBotVerifierBuilder;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
+import org.apache.commons.collections4.map.LRUMap;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -156,6 +158,7 @@ public class DefaultKnownCrawlerDetectorTest {
         UserAgentAnalyzer uaa = UserAgentAnalyzer
                 .newBuilder()
                 .hideMatcherLoadStats()
+                .withCacheInstantiator(cacheSize -> Collections.synchronizedMap(new LRUMap<>(cacheSize)))
                 .withoutCache()
                 .build();
 
