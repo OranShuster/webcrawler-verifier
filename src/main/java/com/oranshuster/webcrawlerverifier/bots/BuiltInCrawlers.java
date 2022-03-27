@@ -24,6 +24,7 @@ public class BuiltInCrawlers {
                 //currently, Bing seems to be spidering the most, but still...
                 GoogleBotData.getInstance(),
                 GoogleAdsBotData.getInstance(),
+                GoogleAdSenseBotData.getInstance(),
                 FacebookBotData.getInstance(),
                 AppleBotData.getInstance(),
                 BingBotData.getInstance(),
