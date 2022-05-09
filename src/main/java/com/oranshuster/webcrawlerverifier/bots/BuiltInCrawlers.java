@@ -37,6 +37,7 @@ public class BuiltInCrawlers {
                 //SogouspiderData.getInstance(),
 
                 //here come the unimportant ones.
+                GoogleWebLightBotData.getInstance(),
                 DuckduckBotData.getInstance(),
 
                 //Slurp is end-of-life, can probably be removed soon.

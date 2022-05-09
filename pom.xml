@@ -34,7 +34,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <log4jVersion>2.17.1</log4jVersion>
+        <log4jVersion>2.17.2</log4jVersion>
     </properties>
 
     <scm>
@@ -90,7 +90,7 @@
         <dependency>
             <groupId>nl.basjes.parse.useragent</groupId>
             <artifactId>yauaa</artifactId>
-            <version>6.11</version>
+            <version>6.12</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
